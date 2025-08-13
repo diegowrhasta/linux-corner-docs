@@ -1,0 +1,77 @@
+name: Publish docs page
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  ci:
+    name: Build
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message. '--p')
+    defaults:
+      run:
+        working-directory: ./linux-corner
+    strategy:
+      matrix:
+        node-version: [22]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+          cache-dependency-path: "./kakeibro-web/pnpm-lock.yaml"
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Build application
+        run: pnpm run build
+  deploy:
+    name: Deploy to Firebase
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./linux-corner
+    needs: ci
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+          cache-dependency-path: "./kakeibro-web/pnpm-lock.yaml"
+
+      - name: Install dependencies
+        run: pnpm i --frozen-lockfile
+
+      - name: Setup service account credentials
+        run: echo '${{ secrets.GCLOUD_SERVICE_ACCOUNT }}' > $HOME/gcloud-service-key.json
+
+      - name: Set GOOGLE_APPLICATION_CREDENTIALS
+        run: echo "GOOGLE_APPLICATION_CREDENTIALS=$HOME/gcloud-service-key.json" >> $GITHUB_ENV
+
+      - name: Build and Deploy to Firebase
+        run: pnpm run deploy
+      
+      - name: Cleanup service account file
+        run: rm -f $HOME/gcloud-service-key.json
