@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
   ci:
@@ -30,7 +31,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "pnpm"
-          cache-dependency-path: "./kakeibro-web/pnpm-lock.yaml"
+          cache-dependency-path: "./linux-corner/pnpm-lock.yaml"
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
@@ -59,7 +60,7 @@ jobs:
         with:
           node-version: 22
           cache: pnpm
-          cache-dependency-path: "./kakeibro-web/pnpm-lock.yaml"
+          cache-dependency-path: "./linux-corner/pnpm-lock.yaml"
 
       - name: Install dependencies
         run: pnpm i --frozen-lockfile
