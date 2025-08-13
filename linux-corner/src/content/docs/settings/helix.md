@@ -53,4 +53,4 @@ I separate each **subset of settings by a topic** in the form of **comments**.
 **_As of today,_** my settings are as follows:
 
 - [x] When in _insert mode_, by pressing `Ctrl + C` I can go back to _normal mode_.
-- [x] I set rulers so that I can visualize see if my line is going for too long.
+- [x] I set rulers so that I can see if my line is going for too long.
