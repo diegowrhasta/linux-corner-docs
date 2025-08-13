@@ -1,8 +1,8 @@
 # Introduction
 
-You can access the site at (Linux Corner)[https://linux-corner.dsbalderrama.top].
+You can access the site at [Linux Corner](https://linux-corner.dsbalderrama.top).
 
-This is an open source project powered by Astro's (Starlight)[https://starlight.astro.build/getting-started/],
+This is an open source project powered by Astro's [Starlight](https://starlight.astro.build/getting-started/).
 a combination of simply wanting to use it for something and taking the time to
 get a site up and running in order to publish interesting problems in Linux, or
 ways of automating tasks, a corner relegated to Linux topics.
