@@ -25,6 +25,8 @@ a section for it**, after that it **auto-creates entries** based on the differen
 
 ## CI/CD
 
+### Publish Pipeline
+
 - A pretty simple CI/CD pipeline has been setup at `/.github/workflows`, this takes care of 
 simply scanning for any commits that have a flag (`--p`), if they do, it will then 
 run a simple build and deploy (to firebase) of the [docs page](https://linux-corner.dsbalderrama.top).
@@ -55,6 +57,20 @@ high level, these are the steps:
     to through Service Account credentials.
     - As a final security measure, we make sure of deleting the temporal `json` 
     file we dumped our secret's text to.
+
+### Cache Cleanup Pipeline
+
+Because we are leveraging github actions and their pre-built actions for setup, 
+we have caches being saved into the repository. A good practice is to do the 
+**house keeping and delete caches that are old and no longer needed** since they contain 
+dependencies that are no longer the ones for the new version of the project. You can 
+read the github action at `/.github/workflows/cache-cleanup`.yml. But in short this 
+leverages the _GitHub API_ in order to query for the caches of the repository, and 
+it will **only keep up the latest one**, all previous caches will be deleted. This is 
+a _CRON_, it will always run at 00:00 **every day.**
+
+**_NOTE:_** Something interesting that Github does is to turn off these **CRON** 
+type of actions if a repository **hasn't been active** for a while (around 60 days).
 
 ## Deploying manually
 

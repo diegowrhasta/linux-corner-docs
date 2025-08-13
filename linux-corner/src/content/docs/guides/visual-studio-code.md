@@ -16,7 +16,7 @@ so that I can have a look at it, thanks!
 
 ## Settings
 
-These are personal settings, 
+These are my personal settings:
 
 ````json
 {
