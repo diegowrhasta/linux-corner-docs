@@ -1,36 +1,39 @@
 ---
-title: Welcome to Starlight
-description: Get started building your docs site with Starlight.
+title: Welcome to my Linux Corner
+description: A site with tons of info that I document (for myself) and for the world to see.
 template: splash
 hero:
-  tagline: Congrats on setting up a new Starlight project!
+  tagline: Diego's small contribution corner to the World Wide Web.
   image:
-    file: ../../assets/houston.webp
+    file: ../../assets/banner.jpg
   actions:
-    - text: Example Guide
-      link: /guides/example/
+    - text: Let's have a look
+      link: /guides/visual-studio-code/
       icon: right-arrow
     - text: Read the Starlight docs
       link: https://starlight.astro.build
       icon: external
       variant: minimal
+      attrs:
+        target: _blank
+        rel: noopener noreferrer
 ---
 
 import { Card, CardGrid } from '@astrojs/starlight/components';
 
-## Next steps
+## Motivations
 
 <CardGrid stagger>
-	<Card title="Update content" icon="pencil">
-		Edit `src/content/docs/index.mdx` to see this page change.
+	<Card title="Share the knowledge" icon="open-book">
+		I want to share as much knowledge as I can with the world.
 	</Card>
-	<Card title="Add new content" icon="add-document">
-		Add Markdown or MDX files to `src/content/docs` to create new pages.
+	<Card title="Document my journey" icon="puzzle">
+		We always tend to forget in tech (due to complexity), so this is also a personal log for refreshing my memory.
 	</Card>
-	<Card title="Configure your site" icon="setting">
-		Edit your `sidebar` and other config in `astro.config.mjs`.
+	<Card title="Have fun exploring" icon="starlight">
+		I am an advocate for documentation frameworks (really like Antora Docs), so I wanted to try Starlight, since it's powered by Astro.
 	</Card>
-	<Card title="Read the docs" icon="open-book">
-		Learn more in [the Starlight Docs](https://starlight.astro.build/).
+	<Card title="Keep my skills sharp" icon="seti:css">
+		Going all in and making this from zero, open source, have an automated CI/CD pipeline deploying to a custom domain. It's all just part of not forgetting what I know.
 	</Card>
 </CardGrid>
