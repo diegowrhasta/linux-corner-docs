@@ -30,9 +30,31 @@ simply scanning for any commits that have a flag (`--p`), if they do, it will th
 run a simple build and deploy (to firebase) of the [docs page](https://linux-corner.dsbalderrama.top).
 
 If you want a rundown of what the action does, you can read the code, but at a 
-high level these are the steps:
+high level, these are the steps:
 
-- 
+- **Build**
+    - Only if the last commit (head commit) has `--p` in the message it will then run 
+    this first step that is tied into the second one.
+    - We establish the `strategy > matrix` syntax so that we might run the action 
+    across different node versions (if need be).
+    - We basically run standard github action pre-built workflows to check out the code, 
+    install packages (with a --frozen-lockfile) and with `pnpm` configured.
+    - If nothing fails, we will proceed to deployment.
+- **Deploy**
+    - We establish that this step needs the `ci` step to be successful, hence if it 
+    gets skipped this also gets skipped.
+    - We do standard checkout, install, stuff (remember that each step has its own 
+    runtime, we don't keep state, but caching is configured so that we don't download 
+    all the packages again).
+    - We have configured on the project's repository a **SECRET** variable under 
+    `GCLOUD_SERVICE_ACCOUNT`, and this is the `.json` credential we got from Google 
+    Cloud Console as a `.json` file but we are putting it in github as text form.
+    - We do some hacking here to create a `.json` file with this secret variable info, 
+    and apply it as env variables so that once we run the `pnpm run deploy` command, 
+    we are all setup to deploy to the specific Firebase project that we want to deploy 
+    to through Service Account credentials.
+    - As a final security measure, we make sure of deleting the temporal `json` 
+    file we dumped our secret's text to.
 
 ## Deploying manually
 
