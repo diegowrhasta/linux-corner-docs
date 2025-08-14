@@ -4,7 +4,7 @@ description: Layout on how I configure Alacritty on my machine
 ---
 
 A simple explanation (refresher) as to the decisions when configuring alacritty on 
-my own machine.
+my own machine. Alacritty is an open-source GPU-accelerated terminal emulator.
 
 ## Why Alacritty?
 
