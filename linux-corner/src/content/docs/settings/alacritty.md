@@ -87,7 +87,7 @@ The way that I chose to sort of establish **new key bindings** that in turn migh
 some function in tmux was to literally catch the **key combinations** at the `alacritty` 
 level and then forward something else to `tmux`.
 
-## A short example
+### A short example
 
 We'll take the _new window_ key binding in `alacritty.toml` as an illustrative 
 example:
@@ -113,3 +113,10 @@ how everything else will be made.
 **_Small big note:_** Some sources might treat the `chars` as `x02` or `x04`, but 
 for my specific instance, `alacritty` didn't recognize the characters so I'm using the 
 translated equivalents in **unicode**.
+
+### A small tip
+
+Alacritty by default _should_ detect changes in its `.toml` config the moment you 
+save the file. So the moment you want to test something out it should be applied 
+automatically, in case of errors as well it will show a red screen and will fallback 
+to a _no settings_ state.

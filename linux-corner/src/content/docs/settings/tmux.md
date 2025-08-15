@@ -65,3 +65,8 @@ output of tmux's session.
 - We are capturing a `Ctrl + t` combination coming from upstream (_alacritty_) and 
 we are triggering the opening of a new window with a specific parameter that allows 
 for that new window to be standing on the previous window's path.
+
+## A small tip
+
+If you are trying out configurations (editing `~/.tmux.conf`), you can immediately 
+reload tmux with the new configurations with `tmux source-file ~/.tmux.conf`.
