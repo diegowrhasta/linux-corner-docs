@@ -16,7 +16,7 @@ Overall, it has all the capabilities necessary to enable a mouse-less experience
 something that I thrive for, since I personally find the moment your hands move 
 towards the mouse, you break flow, and easily become slower.
 
-## Configuration run-down
+## Configuration rundown
 
 ```.conf
 set -g history-limit 10000
