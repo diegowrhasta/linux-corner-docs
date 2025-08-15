@@ -41,7 +41,7 @@ opacity = 0.8
 [keyboard]
 bindings = [
   # New "tab"
-  { key = "T", mods = "Control|Shift", command = { program = "/usr/bin/tmux", args = ["new-window"] } },
+  { key = "T", mods = "Control|Shift", chars = "\u0002\u0014" },
 
   # Navigate tabs
   { key = "Left", mods = "Control|Shift", command = { program = "/usr/bin/tmux", args = ["previous-window"] } },
@@ -54,6 +54,7 @@ bindings = [
   { key = "Key4", mods = "Control|Alt", command = { program = "/usr/bin/tmux", args = ["select-window", "-t", "3"] } },
   # ... add 3–9 if you want more
 ]
+
 ```
 
 In short:
@@ -75,6 +76,40 @@ it will give the idea that the terminal has a background.
 **Keyboard**
 
 - Specific hotkeys so that I can move between different windows all managed by 
-`tmux`. We create new _"tabs"_ with `Ctrl + T`.
+`tmux`. We create new _"tabs"_ with `Ctrl + T`. There's a bit to say as to how this 
+setup actually makes everything work, so please read in regards to the [bridge.](#the-alacritty-and-tmux-bridge)
 - We can navigate from left to right between tabs with `Ctrl + Shift + <Arrow>`.
-- We can jump directly to specific tabs by their order with `Ctrl + Alt + <Number>`
+- We can jump directly to specific tabs by their order with `Ctrl + Alt + <Number>`.
+
+## The alacritty and tmux bridge
+
+The way that I chose to sort of establish **new key bindings** that in turn might leverage 
+some function in tmux was to literally catch the **key combinations** at the `alacritty` 
+level and then forward something else to `tmux`.
+
+## A short example
+
+We'll take the _new window_ key binding in `alacritty.toml` as an illustrative 
+example:
+
+```
+  { key = "T", mods = "Control|Shift", chars = "\u0002\u0014" },
+```
+
+In this instance to the combination of `Ctrl + Shift + t` we are then making 
+`alacritty` forward some specific bytes to the terminal (tmux). In this instance:
+
+- `\u0002` translates to `Ctrl + b` which is tmux's default prefix for possible 
+extra extended hotkeys.
+- `\u0014` translates t0 `Ctrl + t` which is actually the specific binding on tmux's 
+side that will trigger its `new-window` function with an extra parameter that will 
+allow for the new session to open up on the active session's path.
+
+As you can see, it's a small system in which **Alacritty** captures _combinations_, 
+and then forwards a much [simpler signal](/settings/tmux) to **tmux** so that it grabs it and runs 
+something on its side. This is the anatomy of how we should configure things and 
+how everything else will be made.
+
+**_Small big note:_** Some sources might treat the `chars` as `x02` or `x04`, but 
+for my specific instance, `alacritty` didn't recognize the characters so I'm using the 
+translated equivalents in **unicode**.

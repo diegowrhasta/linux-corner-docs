@@ -18,7 +18,9 @@ towards the mouse, you break flow, and easily become slower.
 
 ## Configuration rundown
 
-```.conf
+```
+# GENERAL CONFIGS
+
 set -g history-limit 10000
 
 # let tmux see all the modifier combinations from Alacritty
@@ -26,6 +28,8 @@ set -g xterm-keys on
 
 # Tell tmux to advertise a 256-color smart terminal
 set -g default-terminal "tmux-256color"
+
+# BINDINGS
 
 # ↑ scroll up one line (or enter copy-mode if not already)
 bind -n C-S-Up if-shell -F "#{pane_in_mode}" \
@@ -36,6 +40,10 @@ bind -n C-S-Up if-shell -F "#{pane_in_mode}" \
 bind -n C-S-Down if-shell -F "#{pane_in_mode}" \
     "send-keys -X scroll-down"     \
     "send-keys q"                  # exit copy-mode if you hit the bottom
+
+# Expanding new tab with current directory (Ctrl + T)
+
+bind-key C-t new-window -c "#{pane_current_path}"
 ```
 
 In short:
@@ -54,3 +62,6 @@ you will enter _copy mode_ a tmux mode that allows for us to **scroll back** or 
 output of tmux's session.
     - Based on if we are on the copy mode or not we will scroll up or down or trigger 
     said copy mode and then scroll up or down.
+- We are capturing a `Ctrl + t` combination coming from upstream (_alacritty_) and 
+we are triggering the opening of a new window with a specific parameter that allows 
+for that new window to be standing on the previous window's path.
