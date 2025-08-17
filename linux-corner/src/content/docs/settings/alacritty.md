@@ -120,3 +120,7 @@ Alacritty by default _should_ detect changes in its `.toml` config the moment yo
 save the file. So the moment you want to test something out it should be applied 
 automatically, in case of errors as well it will show a red screen and will fallback 
 to a _no settings_ state.
+
+## The Alacritty desktop entry
+
+_Coming Soon_

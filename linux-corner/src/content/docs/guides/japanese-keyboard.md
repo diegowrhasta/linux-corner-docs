@@ -29,17 +29,28 @@ following:
 - We need to add environment variables so that `fcitx5` starts _and actually works_ 
 a good way to set environment variables is in a `~/.zshenv` file, in here we should 
 set up as follows:
-
 ```
 export GTK_IM_MODULE='fcitx'
 export QT_IM_MODULE='fcitx'
 export SDL_IM_MODULE='fcitx'
 export XMODIFIERS='@im=fcitx'
 ```
+- We need to add the `Mozc` keyboard as part of the layouts that our _DE_ has registered. 
+After doing so, we should be seeing a keyboard in the **icon tray** by pressing the 
+_Hotkey_ to switch between layouts we should be switching to Japanese (e.g. `Ctrl + Space`). 
+    -- You will have to start `fcitx5-configtool` so that you can add the `Mozc` keyboard, also 
+    be sure to uncheck the `Show only current language` checkbox.
+- GNOME might require for a specific addon to be installed so that it integrates with 
+`fcitx` correctly, [download it and install it](https://extensions.gnome.org/extension/261/kimpanel/). 
+This basically will make it so that the window that pops up with the 変換 is aligned 
+with the theme, (_I love dark themes, so the window will also be dark and stylized_).
 
 Since (as of today), **Wayland** is the new standard for the latest versions of 
 **GNOME**, we have to work with `fcitx5`, this is the new standard that integrates 
 seamlessly.
+
+_mini note:_ You can even customize the theme of `fcitx` perhaps I will dabble in 
+that in the future? _(time will tell)_
 
 ### KDE Plasma
 
@@ -52,6 +63,9 @@ US-Keyboard and **then** add **_Mozc_**. After this it started working on KDE Pl
 as well. (Just fyi, KDE Plasma also uses Wayland by default).
 
 [Source](https://www.reddit.com/r/GarudaLinux/comments/q23yya/keyboard_layout_reset_on_reboot/)
+
+_Extra Note:_ For whatever reason `fcitx5-configtool` will open up Plasma's own 
+**Settings** window, so you can just add Mozc there.
 
 ## About Wayland, what is it?
 
