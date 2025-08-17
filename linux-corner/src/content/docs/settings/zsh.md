@@ -65,7 +65,6 @@ esac
 
 # Aliases
 
-alias hx="helix"
 alias waifu={WAIFU}
 alias lasf="ls -laF"
 alias prx={PRX}
@@ -120,8 +119,6 @@ also be auto-generated).
 - Another auto-generated section probably, this points to the local directory for 
 `pnpm`
 - Aliases for things I want such as:
-    - Since I use `helix`, and I want an easy to type alias, `hx` is remapped to 
-    open `helix`
     - There's a program to scale images (_don't ask why I need this_), this opens it up 
     with one command
     - An alias to list files in a directory well formatted (it will pick-up hidden 
@@ -156,3 +153,23 @@ takes care of just **vacumming logs, clearing caches** and the like, but by send
 a script for `pnpm` to auto-update. You can read it in its [repository](https://github.com/diegowrhasta/dotfiles/blob/main/custom-scripts/maintenance.sh), 
 it's a bit long, so it won't be explained here that much in detail. (Besides, it's 
 well commented).
+
+## Wrapper scripts
+
+A good way to bubble up aliases to `sudo`, is to instead of writing an alias under 
+`~/.zshrc` you can create a wrapper script at a specific location, e.g.,
+
+```
+sudo nano /usr/local/bin/hx
+
+#!/bin/sh
+exec helix "$@"
+
+sudo chmod +x /usr/local/bin/hx
+
+```
+
+This is a specific use case for `helix`, since I had installed it but it would only 
+open up with `helix ...`, where as the titular `hx` is shorter. And so I simply created 
+this file, and even when editing files that require `sudo`, `sudo hx file` and 
+`hx file` all work just fine.
