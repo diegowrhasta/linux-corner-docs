@@ -58,3 +58,32 @@ can then show up on your _desktop/main menu/search_.
 In short, you can add these entries as any text file in the respective path and the 
 `DE` should pick it up and allow for you to execute it so that it patches back 
 to the respective application.
+
+## How to keep desktop entries clean
+
+When looking at a specific line in the alacritty `.desktop` file you might notice 
+that the `Exec` is literally just `alacritty` which would imply alacritty is somehow 
+available globally. In case we install it with **cargo**, it won't be. Hence we have 
+to do some configurations on our side.
+
+**cargo** installed binaries are always at `~/.cargo/bin/`. And a DE such as **GNOME** 
+in order to detect executables/binaries, it will look at at two paths: 
+
+- `/usr/bin`
+- `/usr/local/bin`
+
+_What now?_. Pretty simple, by being a bit clever we can take advantage of the 
+**symlink** feature that exists in **Linux**. Which are basically files that are 
+_a dummy_ in a way, that when queried will bounce the caller back to another file/
+executable. And so by running:
+
+```
+sudo ln -s ~/.cargo/bin/alacritty /usr/local/bin/alacritty
+```
+
+After applying this, we should get the `Alacritty` desktop entry available and when 
+opening it we should have a **_blazingly fast_** terminal emulator ready for use.
+
+_NOTE:_ There's a utility that allows to pipe a `.desktop` file to it to see if 
+it's at the very least formatted correctly: `desktop-file-validate <file-path>`.
+
