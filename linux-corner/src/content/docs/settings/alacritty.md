@@ -123,4 +123,31 @@ to a _no settings_ state.
 
 ## The Alacritty desktop entry
 
-_Coming Soon_
+In case we install alacritty with **cargo**, the executable won't be available 
+globally hence both we should add **cargo**'s path to `.zshrc`, and we should also 
+somehow patch the cargo bin to `GNOME`'s scanned binaries.
+
+**cargo** installed binaries are always at `~/.cargo/bin/`. And a DE such as **GNOME** 
+in order to detect executables/binaries, it will look at at two paths: 
+
+- `/usr/bin`
+- `/usr/local/bin`
+
+_What now?_. Pretty simple, by being a bit clever we can take advantage of the 
+**symlink** feature that exists in **Linux**. Which are basically files that are 
+_a dummy_ in a way, that when queried will bounce the caller back to another file/
+executable. And so by running:
+
+```
+sudo ln -s ~/.cargo/bin/alacritty /usr/local/bin/alacritty
+```
+
+We will in essence create an _unnoficial executable at a path that GNOME scans_ but 
+when trying to call it it will directly bounce back to the actual executable. (_Which 
+is pretty sweet_)
+
+After applying this, we should get the `Alacritty` desktop entry available and when 
+opening it we should have a **_blazingly fast_** terminal emulator ready for use.
+
+_NOTE:_ There's a utility that allows to pipe a `.desktop` file to it to see if 
+it's at the very least formatted correctly: `desktop-file-validate <file-path>`.
