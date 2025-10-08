@@ -173,3 +173,19 @@ This is a specific use case for `helix`, since I had installed it but it would o
 open up with `helix ...`, where as the titular `hx` is shorter. And so I simply created 
 this file, and even when editing files that require `sudo`, `sudo hx file` and 
 `hx file` all work just fine.
+
+## Status Bar
+
+By default Manjaro's comes with `pk10`, and you can use its CLI tool to auto-generate 
+a _dotfile_ that fits to your liking and customizes the terminal's status bar look 
+and feel. [Guide](/guides/manjaro-status-bar).
+
+My personal preference:
+
+![Status Bar Image](../../../assets/status-bar.png)
+
+- The path
+- Git branch name
+- The time at the right end
+
+That's it.

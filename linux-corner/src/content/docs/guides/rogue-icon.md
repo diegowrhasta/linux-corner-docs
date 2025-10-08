@@ -65,7 +65,7 @@ When looking at a specific line in the alacritty `.desktop` file you might notic
 that the `Exec` is literally just `alacritty` which would imply alacritty is somehow 
 available globally. 
 
-The way to let GNOME see this executable is discused at the [alacritty section](/settings/alacrity/#the-alacritty-desktop-entry), 
+The way to let GNOME see this executable is discused at the [alacritty section](/settings/alacritty/#the-alacritty-desktop-entry), 
 however, what you need to know at least when it comes to **GNOME** is that it will 
 only detect as _"global"_ executables, binaries that are at
 
