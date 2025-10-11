@@ -93,3 +93,24 @@ layer**.
 This can affect sometimes the solutions, errors and other things we configure on 
 our **linux distro** so we should be aware of this concepts to **debug and lookup 
 info more accurately.**
+
+## GNOME Shenanigans
+
+In order to keep my environment consistent, since I use a custom keyboard (Keychron 
+K2 HE btw), layout is differently, and I am switching between windows and Linux. 
+Muscle memory plays a big role when it comes to speed and consistency with the things 
+I write (since I'm a coder). And so, one specific thing to fcxit and its input source 
+switching is that it's mapped by default to `Ctrl + Space`, however, on Windows that 
+key is `Super (Win) + Space`. Since in Linux you can do whatever you want, I'd rather 
+adapt that into Windows shortcuts than the other way around and train my brain again.
+
+And so, you can customize the hotkey for that pretty easily by going into the **Settings** 
+section of fcxit. However, _GNOME_ has something already mapped to `Super + Space`. 
+So you need to:
+
+. Go into the settings in Gnome, Keyboard > Hotkeys
+. Search for `Switch to next input source`.
+. Unassign the keymap here
+. Go into fcxit, change the input change to `Super + Space`
+
+And with this, the input source change should be transferrable across OS.
