@@ -114,3 +114,9 @@ So you need to:
 . Go into fcxit, change the input change to `Super + Space`
 
 And with this, the input source change should be transferrable across OS.
+
+_Extra Note:_ The reason I ran into this small rabbit hole is because `Ctrl + Space` 
+messes up my workflow when coding, since that is used for IDE autocomplete suggestions, 
+and in Linux I kept changing the input source between Japanese and English, and so 
+because Linux is king, I decided to go and make the experience whatever I wanted and 
+intended on sticking with.
