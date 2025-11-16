@@ -120,3 +120,31 @@ messes up my workflow when coding, since that is used for IDE autocomplete sugge
 and in Linux I kept changing the input source between Japanese and English, and so 
 because Linux is king, I decided to go and make the experience whatever I wanted and 
 intended on sticking with.
+
+## Old laptops and fcitx
+
+So, I have a really old laptop, that thanks to the power of Linux is still usable, 
+(mostly light work, Japanese study, really low-end gaming). Maybe because it only 
+has 8 GB RAM, processor is just not there when it comes to actual power (also I 
+think I got scammed a bit with the laptop). There's one **really specific and nieche** 
+issue. And that is while simply typing Japanese and switching fast, sometimes the 
+keyboard dies, it doesn't recognize the keys, or it appears as though the 
+`Shift` key is always pressed.
+
+If you surf the internet, there are tons of possible solutions, workarounds, and so 
+on, but nothing really worked. (_And this is where ChatGPT became goated_). Out of 
+conversations and suggestions with him, I managed to isolate the issue:
+
+`It's fcitx that for whatever reason crashes/just derps out on this laptop`.
+
+And so, the way to _hot-reload_ it is actually pretty interesting:
+
+- Go to a TTY i.e., `Ctrl + Alt + F3`
+- Log into the account
+- `ps aux | grep fcitx`
+- `killall fcitx5`
+- `fcitx5 -dr`
+
+This in essence kills the process and we then start it again. After doing this task, 
+the keyboard behaviors stopped being strange. Cementing the idea that the culprit 
+was indeed the IDE.
