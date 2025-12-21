@@ -22,7 +22,7 @@ But as always, **let's look at some concepts and theory first**
 
 ### Ripping as a concept
 
-_CD-Ripping:_ A specific proces that **extracts digital content** from a container, 
+_CD-Ripping:_ A specific process that **extracts digital content** from a container, 
 in this case **a CD** onto a **new digital form and location**. _Data is not damaged, 
 and the key is at the fact that **ripping** is used to **shift formats**, and to 
 **edit** or **duplicate/back-up** media_. It's copying but with extra steps, _they 
@@ -51,11 +51,12 @@ If we were to explain briefly what each field is:
 96 dB.
 - **Sample rate:** This determines _the highest frequency_ that can be put in the 
 track, 44.1 kHz is roughly 22 kHz audio, which is actually above human hearing, 
-**meaning that the track should be able to reproduce an immense mount of sounds**, 
+**meaning that the track should be able to reproduce an immense amount of sounds**, 
 so we can hear all the details the musician/engineer put in there.
 - **Channels:** Music is _basically always_ mixed in stereo, that way when we hear 
-it we get all sorts of sounds coming from everywhere, and small playful imagery, 
-said in a fancy way: _enables spatial imaging and soundstage_
+it we get all sorts of sounds coming from everywhere, and small playful imagery (if you 
+close your eyes and let your imagination run wild). Said in a fancy way: 
+_enables spatial imaging and soundstage_
 - **Encoding:** PCM stands for _Pulse-Code Modulation_, this is raw, uncompressed 
 representation of audio samples. **Native format for CDs**, any lossless format 
 decodes to PCM quality before playback, a format such as `WAV` is a container that 
@@ -81,6 +82,17 @@ yay -S cdparanoia flac abcde sox picard
 
 You can literally run **one command** and you will get `.flac` files already tagged. 
 Of course with _bit-perfect_ output and _lossless quality_.
+
+Definitions:
+
+- Bit-perfect: We copied _every single bit that held audio data over, we didn't 
+cut corners, so we should have the track in its **purest form**
+- Lossless quality: Again, the format in which we have a _track_ should not 
+cut any corners and should provide on playback _all of the track's full on remastered 
+glory_
+- Tagging: It just means adding metadata to a track (might be just me, but I like 
+my tracks looking pretty with a cover and all sorts of information adding a story, 
+and more background on it)
 
 ````
 abcde -o flac
@@ -146,7 +158,7 @@ Linux has many good players:
 - Strawberry
 - Rhytmbox
 
-That's on the _software side_ however, there's a bit _hardware_ involved also, 
+That's on the _software side_ however, there's a bit of _hardware_ involved also, 
 so pairing any of these players with _**a decent** DAC or audio interface_, will 
 sound identical to a **high-end CD player**.
 
