@@ -165,12 +165,12 @@ sound identical to a **high-end CD player**.
 ## DAC / amp
 
 **DAC** = This stands for Digital-to-Analog Converter. Takes digital audio (USB, 
-optical, CD data, etc), and converts it all to **digital waveform**
+optical, CD data, etc), and converts it all to **analog waveform**
 
 Music files (FLAC, WAV, etc) are **digital data** (numbers). Speakers and headphones 
 need an **analog electric signal**
 
-Now, this is really important **EVERY DEVICE HAS A BUILT-IN DAC**, (phone, laptop, 
+Now, this is really important, **EVERY DEVICE HAS A BUILT-IN DAC**, (phone, laptop, 
 CD player, Bluetooth headphones). But the difference is **quality**
 
 **Amplifier** = The analog signal coming out of a DAC **is very weak**. The amplifier 
