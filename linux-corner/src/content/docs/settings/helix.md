@@ -36,15 +36,13 @@ I am **minimalistic in my configs** as well, it's by experience that I know that
 engineering** anything is bad (even your **own tool configuration**):
 
 ````toml
-# Remaps
+theme = "rose-pine-custom"
+
+[editor]
+rulers = [80, 120]
 
 [keys.insert]
 "C-c" = "normal_mode"
-
-# Visual
-
-[editor]
-rulers = [80, 144]
 ````
 
 The idea is pretty simple, there are different settings that **add behavior to Helix**, 
@@ -52,5 +50,43 @@ I separate each **subset of settings by a topic** in the form of **comments**.
 
 **_As of today,_** my settings are as follows:
 
+- [x] Use a custom theme that removes the background (based around `rose_pine`)
 - [x] When in _insert mode_, by pressing `Ctrl + C` I can go back to _normal mode_.
 - [x] I set rulers so that I can see if my line is going for too long.
+
+## Themes
+
+As I want _an aesthetically pleasing_ working environment. I wanted to make the 
+background transparent, since I want to see a background that's cool. And in order 
+to do so, you have to do a bit of tinkering with the tools **we have at our disposal**.
+
+There's a convention for themes you might want to drop in or build yourself, and 
+so you have to create a file at:
+
+````
+mkdir -p ~/.config/helix/themes
+````
+
+And then you can add a `.toml` file with a name (this name will be the one 
+used to reference it in the config file later).
+
+````
+helix ~/.config/helix/themes/rose-pine-custom.toml
+````
+
+Inside this file I simply inserted two lines:
+
+````toml
+inherits="rose_pine"
+
+"ui.background" = { }
+````
+
+I am using `rose_pine`, so I want to keep all of that look, yet I am overriding 
+a specific property `ui.background`, if you set it to an **empty object** then it 
+will make the background disappear (and since the terminal is transparent, as 
+disussed in [the alacritty section](/settings/alacritty/#settings-rundown)), with that, 
+you can simply re-open a file and you will see how the background is _now transparent_
+
+And so in the [settings](#helix-configuration), I would simply reference this 
+custom theme like so: `rose-pine-custom`.
