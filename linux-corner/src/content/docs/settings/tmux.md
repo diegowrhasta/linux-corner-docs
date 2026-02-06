@@ -29,6 +29,17 @@ set -g xterm-keys on
 # Tell tmux to advertise a 256-color smart terminal
 set -g default-terminal "tmux-256color"
 
+# List of plugins
+set -g @plugin 'tmux-plugins/tpm'           # Plugin manager (MUST BE FIRST!)
+set -g @plugin 'tmux-plugins/tmux-resurrect' # Session persistence
+set -g @plugin 'tmux-plugins/tmux-continuum' # Auto save/restore
+
+# Plugin-specific configurations (optional)
+set -g @continuum-restore 'on'
+
+# Initialize TPM (keep this line at the very bottom of your config!)
+run '~/.tmux/plugins/tpm/tpm'
+
 # BINDINGS
 
 # ↑ scroll up one line (or enter copy-mode if not already)
@@ -56,6 +67,12 @@ keys. This allows for tmux to recognize all the signals.
 - We tell all programs running inside tmux to run on `tmux-256color`, this support 
 will be propagated across all tmux panes. This is more accurate for tmux's capabilities, 
 `ncurses` does take it into consideration.
+- We are installing some plugins to make our life easier, the "master" plugin is 
+`tmp`, then there's `tmux-resurrect` and `tmux-continuum` for persisting the tmux 
+session
+- We are configuring `tmux-continuum` specifically so that it starts by default on 
+tmux and starts doing its periodic saving
+- And of course, we have to bootstrap the master plugin to install other plugins
 - We are relegating scrolling with a key combination to tmux. We skip over the convention 
 that everything has to be prefixes by tmux's `Ctrl + b`. With `Ctrl + Shift + <Arrow-up/Arrow-down>`, 
 you will enter _copy mode_ a tmux mode that allows for us to **scroll back** or up in the 
@@ -70,3 +87,40 @@ for that new window to be standing on the previous window's path.
 
 If you are trying out configurations (editing `~/.tmux.conf`), you can immediately 
 reload tmux with the new configurations with `tmux source-file ~/.tmux.conf`.
+
+## About tmux plugins
+
+**NOTE:**
+The default `prefix` for tmux is `Ctrl + b`. There really isn't visual feedback, 
+but you can test if the prefix works by trying to do a `Ctrl + b + p` if you have 
+two "windows" opened, it should navigate from one space to the other.
+
+
+So, tmux has plugins that expand its functionalities from the core, there are tons 
+and for many purposes, in my case I just wanted a couple to persist my session 
+across restarts/shutdowns.
+
+- `tpm`: This is basically the **master plugin**, he installs other plugins, it's the 
+only plugin that has to be "manually installed", really easily though, just clone 
+its repo into the default plugins folder for tmux: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`
+- `tmux-resurrect`: This is a plugin that saves the session at will, you have to press 
+`prefix` + `Ctrl-s` to save the current session. And `prefix` + `Ctrl-r` to restore 
+a previously saved session.
+- `tmux-continuum`: This autosaves the session every 15 minutes, and then on tmux 
+server start it restores the latest backup
+
+### Getting plugins up and running
+
+Before you can simply "add more plugins in the `~/.tmux.conf` file", you have to 
+clone the `tpm` plugin manually: `git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm`, 
+once you have under `~/.tmux/plugins/tpm` the `tpm` plugin, you can then add 
+all the `set -g @plugin` entries you want and configure them as well. However, after 
+you have added all of that to `.tmux.conf`, you need to reload it in your current 
+session, remember [you can do it with a command](#a-small-tip). After **that is 
+done**, you can then press `prefix + Shift + i`, this will then attempt to install 
+all the plugins (by cloning from github repos). After that you will see a screen 
+saying `TMUX environment reloaded. Done.`. With this you can double check on `~/.tmux/plugins`, 
+there should be two more folders for `tmux-resurrect` and `tmux-continuum`. And if 
+you run the specific combinations for either of them, they should work.
+
+_And that's it, you should be know ready to persist that tmux space_
