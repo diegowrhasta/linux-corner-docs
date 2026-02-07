@@ -5,7 +5,7 @@ description: A guide forged in failures, to troubleshoot and fix VMs with no int
 
 Everything was working fine, until I ran update/upgrade of packages. And also suspended 
 _forcefully_ whilst some VMs were still running in the background. _To this day the 
-exact root cause is anyone's guess_
+exact root cause is anyone's guess._
 
 ## Steps towards resetting qemu
 
